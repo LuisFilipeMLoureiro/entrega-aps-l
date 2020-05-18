@@ -18,6 +18,7 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
     private final JCheckBox checkBox1;
     private final JCheckBox checkBox2;
 
+
     private final Image image;
     private Color color;
 
@@ -32,8 +33,13 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         checkBox2 = new JCheckBox("");
 
         if (gate.getInputSize() == 2) {
-            add(checkBox1, 30, 70, 150, 25);
-            add(checkBox2, 30, 150, 150, 25);
+            //add(checkBox1, 30, 70, 150, 25);
+            //add(checkBox2, 30, 150, 150, 25);
+
+
+
+
+
         } else {
             add(checkBox1, 30, 110, 150, 25);
         }
@@ -63,6 +69,8 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         entrada1 = checkBox1.isSelected();
         entrada2 = checkBox2.isSelected();
 
+
+
         System.out.println(entrada1);
         System.out.println(entrada2);
 
@@ -71,6 +79,7 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
 
         if (entrada1) {
             switch1.turnOn();
+
         }
         ;
         this.gate.connect(0, switch1);
@@ -99,6 +108,14 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
     public void actionPerformed(ActionEvent event) {
         update();
     }
+    public void Clicou(MouseEvent event){
+
+        int x = event.getX();
+        int y = event.getY();
+        System.out.println(x);
+
+            }
+
 
     @Override
     public void mouseClicked(MouseEvent event) {
@@ -120,6 +137,9 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
 
             // ...e chamamos repaint para atualizar a tela.
             update();
+         System.out.println(x);
+         System.out.println(y);
+
         }
     }
 
@@ -163,12 +183,32 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         // Desenha a imagem, passando sua posição e seu tamanho.
         g.drawImage(image, 50, 40, 230, 160, this);
 
+
+
+
         // Desenha um quadrado cheio.
         g.setColor(color);
         g.fillOval(273, 110, 25, 25);
+        g.drawRect(30, 70, 50, 25);
+        //g.drawRect(30, 150, 150, 25);
+        g.fillRect(30, 70, 50, 25);
+        g.drawRect(30, 150, 50, 25);
+        //add(checkBox1, 30, 70, 150, 25);
+        //add(checkBox2, 30, 150, 150, 25);
+
+
 
         // Linha necessária para evitar atrasos
         // de renderização em sistemas Linux.
         getToolkit().sync();
+    }
+
+
+    public void Pintor(Graphics g) {
+        super.paintComponent(g);
+        g.drawRect(30, 70, 150, 25);
+        g.setColor(Color.RED);
+        g.fillRect(230,80,10,10);
+
     }
 }
